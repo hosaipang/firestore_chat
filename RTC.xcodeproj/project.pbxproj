@@ -187,6 +187,7 @@
 				3C35594C2276F1E000A89D97 /* Frameworks */,
 				3C35594D2276F1E000A89D97 /* Resources */,
 				5F945864C46FEBF4A1D0AFAC /* [CP] Embed Pods Frameworks */,
+				9A75390730E515C8AF15FAA7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,6 +207,7 @@
 				3C3559632276F1E100A89D97 /* Frameworks */,
 				3C3559642276F1E100A89D97 /* Resources */,
 				8475B38066DB5E3207B1B3A1 /* [CP] Embed Pods Frameworks */,
+				F90D1F3B979442E4CCDF326E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -226,6 +228,7 @@
 				3C35596E2276F1E100A89D97 /* Frameworks */,
 				3C35596F2276F1E100A89D97 /* Resources */,
 				38A845C182527BFD53816A10 /* [CP] Embed Pods Frameworks */,
+				494CC9BFFE2825FC8C5BDE7B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -353,6 +356,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTCUITests/Pods-RTCUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		494CC9BFFE2825FC8C5BDE7B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RTCUITests/Pods-RTCUITests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Cpp.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTCUITests/Pods-RTCUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5F945864C46FEBF4A1D0AFAC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,6 +422,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTCTests/Pods-RTCTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9A75390730E515C8AF15FAA7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RTC/Pods-RTC-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Cpp.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTC/Pods-RTC-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E7B235596EFA43029E0A1049 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,6 +486,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F90D1F3B979442E4CCDF326E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RTCTests/Pods-RTCTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Cpp.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTCTests/Pods-RTCTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

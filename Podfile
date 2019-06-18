@@ -5,6 +5,7 @@ target 'RTC' do
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
 end
 
 target 'RTCTests' do
@@ -13,6 +14,7 @@ target 'RTCTests' do
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
 end
 
 target 'RTCUITests' do
@@ -21,4 +23,5 @@ target 'RTCUITests' do
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
 end
