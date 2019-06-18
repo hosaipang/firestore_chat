@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B5FB5D8A8E88DCF10034CF5 /* libPods-RTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720104315EC3A48990A9077 /* libPods-RTC.a */; };
 		3C3559532276F1E000A89D97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559522276F1E000A89D97 /* AppDelegate.swift */; };
 		3C3559552276F1E000A89D97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559542276F1E000A89D97 /* ViewController.swift */; };
 		3C3559582276F1E000A89D97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C3559562276F1E000A89D97 /* Main.storyboard */; };
@@ -15,6 +16,10 @@
 		3C3559602276F1E000A89D97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C35595E2276F1E000A89D97 /* LaunchScreen.storyboard */; };
 		3C35596B2276F1E100A89D97 /* RTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35596A2276F1E100A89D97 /* RTCTests.swift */; };
 		3C3559762276F1E100A89D97 /* RTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559752276F1E100A89D97 /* RTCUITests.swift */; };
+		3C3559842276F83A00A89D97 /* RTCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559832276F83A00A89D97 /* RTCManager.swift */; };
+		3C3559852276F83A00A89D97 /* RTCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559832276F83A00A89D97 /* RTCManager.swift */; };
+		66B4E2F8E073EC9065A63CF3 /* libPods-RTCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1CFDC9EBC7A437E551E65B /* libPods-RTCUITests.a */; };
+		69E79906D77430B2843BE8E4 /* libPods-RTCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62161393FB2004F5E39F22FC /* libPods-RTCTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02042D3D72BB4D836BE95896 /* Pods-RTCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTCTests.debug.xcconfig"; path = "Target Support Files/Pods-RTCTests/Pods-RTCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		174C02C664E395BEAA5DAAFB /* Pods-RTCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTCTests.release.xcconfig"; path = "Target Support Files/Pods-RTCTests/Pods-RTCTests.release.xcconfig"; sourceTree = "<group>"; };
+		1B405BC23727774BEB554937 /* Pods-RTCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTCUITests.debug.xcconfig"; path = "Target Support Files/Pods-RTCUITests/Pods-RTCUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3720104315EC3A48990A9077 /* libPods-RTC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C35594F2276F1E000A89D97 /* RTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3559522276F1E000A89D97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C3559542276F1E000A89D97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +58,12 @@
 		3C3559712276F1E100A89D97 /* RTCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3559752276F1E100A89D97 /* RTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCUITests.swift; sourceTree = "<group>"; };
 		3C3559772276F1E100A89D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C3559832276F83A00A89D97 /* RTCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCManager.swift; sourceTree = "<group>"; };
+		4AF1088B48AFD832332D9F5A /* Pods-RTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTC.debug.xcconfig"; path = "Target Support Files/Pods-RTC/Pods-RTC.debug.xcconfig"; sourceTree = "<group>"; };
+		62161393FB2004F5E39F22FC /* libPods-RTCTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTCTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7479F0D2FA84DAF6BBC0553F /* Pods-RTCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTCUITests.release.xcconfig"; path = "Target Support Files/Pods-RTCUITests/Pods-RTCUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9C1CFDC9EBC7A437E551E65B /* libPods-RTCUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTCUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC94BE9BABFDC7205C08107E /* Pods-RTC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTC.release.xcconfig"; path = "Target Support Files/Pods-RTC/Pods-RTC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B5FB5D8A8E88DCF10034CF5 /* libPods-RTC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69E79906D77430B2843BE8E4 /* libPods-RTCTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B4E2F8E073EC9065A63CF3 /* libPods-RTCUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +101,8 @@
 				3C3559692276F1E100A89D97 /* RTCTests */,
 				3C3559742276F1E100A89D97 /* RTCUITests */,
 				3C3559502276F1E000A89D97 /* Products */,
+				45B2A3053DD6ED099A2E34AB /* Pods */,
+				52322F807DF9BF94382C5BF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +126,7 @@
 				3C35595E2276F1E000A89D97 /* LaunchScreen.storyboard */,
 				3C3559612276F1E000A89D97 /* Info.plist */,
 				3C3559592276F1E000A89D97 /* RTC.xcdatamodeld */,
+				3C3559832276F83A00A89D97 /* RTCManager.swift */,
 			);
 			path = RTC;
 			sourceTree = "<group>";
@@ -128,6 +149,29 @@
 			path = RTCUITests;
 			sourceTree = "<group>";
 		};
+		45B2A3053DD6ED099A2E34AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4AF1088B48AFD832332D9F5A /* Pods-RTC.debug.xcconfig */,
+				CC94BE9BABFDC7205C08107E /* Pods-RTC.release.xcconfig */,
+				02042D3D72BB4D836BE95896 /* Pods-RTCTests.debug.xcconfig */,
+				174C02C664E395BEAA5DAAFB /* Pods-RTCTests.release.xcconfig */,
+				1B405BC23727774BEB554937 /* Pods-RTCUITests.debug.xcconfig */,
+				7479F0D2FA84DAF6BBC0553F /* Pods-RTCUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		52322F807DF9BF94382C5BF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3720104315EC3A48990A9077 /* libPods-RTC.a */,
+				62161393FB2004F5E39F22FC /* libPods-RTCTests.a */,
+				9C1CFDC9EBC7A437E551E65B /* libPods-RTCUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C35597A2276F1E100A89D97 /* Build configuration list for PBXNativeTarget "RTC" */;
 			buildPhases = (
+				136D1BA680739CB33975A901 /* [CP] Check Pods Manifest.lock */,
 				3C35594B2276F1E000A89D97 /* Sources */,
 				3C35594C2276F1E000A89D97 /* Frameworks */,
 				3C35594D2276F1E000A89D97 /* Resources */,
+				5F945864C46FEBF4A1D0AFAC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C35597D2276F1E100A89D97 /* Build configuration list for PBXNativeTarget "RTCTests" */;
 			buildPhases = (
+				EDB291331828BBB2B2BA2418 /* [CP] Check Pods Manifest.lock */,
 				3C3559622276F1E100A89D97 /* Sources */,
 				3C3559632276F1E100A89D97 /* Frameworks */,
 				3C3559642276F1E100A89D97 /* Resources */,
+				8475B38066DB5E3207B1B3A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,9 +218,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C3559802276F1E100A89D97 /* Build configuration list for PBXNativeTarget "RTCUITests" */;
 			buildPhases = (
+				E7B235596EFA43029E0A1049 /* [CP] Check Pods Manifest.lock */,
 				3C35596D2276F1E100A89D97 /* Sources */,
 				3C35596E2276F1E100A89D97 /* Frameworks */,
 				3C35596F2276F1E100A89D97 /* Resources */,
+				38A845C182527BFD53816A10 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,6 +304,141 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		136D1BA680739CB33975A901 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RTC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		38A845C182527BFD53816A10 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RTCUITests/Pods-RTCUITests-frameworks.sh",
+				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTCUITests/Pods-RTCUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F945864C46FEBF4A1D0AFAC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RTC/Pods-RTC-frameworks.sh",
+				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTC/Pods-RTC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8475B38066DB5E3207B1B3A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RTCTests/Pods-RTCTests-frameworks.sh",
+				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RTCTests/Pods-RTCTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7B235596EFA43029E0A1049 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RTCUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDB291331828BBB2B2BA2418 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RTCTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3C35594B2276F1E000A89D97 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -262,6 +447,7 @@
 				3C3559552276F1E000A89D97 /* ViewController.swift in Sources */,
 				3C35595B2276F1E000A89D97 /* RTC.xcdatamodeld in Sources */,
 				3C3559532276F1E000A89D97 /* AppDelegate.swift in Sources */,
+				3C3559842276F83A00A89D97 /* RTCManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C35596B2276F1E100A89D97 /* RTCTests.swift in Sources */,
+				3C3559852276F83A00A89D97 /* RTCManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +538,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -412,6 +600,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -434,6 +623,7 @@
 		};
 		3C35597B2276F1E100A89D97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AF1088B48AFD832332D9F5A /* Pods-RTC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +642,7 @@
 		};
 		3C35597C2276F1E100A89D97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC94BE9BABFDC7205C08107E /* Pods-RTC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +661,7 @@
 		};
 		3C35597E2276F1E100A89D97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02042D3D72BB4D836BE95896 /* Pods-RTCTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +683,7 @@
 		};
 		3C35597F2276F1E100A89D97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 174C02C664E395BEAA5DAAFB /* Pods-RTCTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +705,7 @@
 		};
 		3C3559812276F1E100A89D97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B405BC23727774BEB554937 /* Pods-RTCUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +726,7 @@
 		};
 		3C3559822276F1E100A89D97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7479F0D2FA84DAF6BBC0553F /* Pods-RTCUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
