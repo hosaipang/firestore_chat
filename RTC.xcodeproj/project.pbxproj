@@ -18,7 +18,7 @@
 		3C3559762276F1E100A89D97 /* RTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559752276F1E100A89D97 /* RTCUITests.swift */; };
 		3C3559842276F83A00A89D97 /* RTCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559832276F83A00A89D97 /* RTCManager.swift */; };
 		3C3559852276F83A00A89D97 /* RTCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559832276F83A00A89D97 /* RTCManager.swift */; };
-		3CF6350E22B88B4E00B87046 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CF6350D22B88B4E00B87046 /* GoogleService-Info.plist */; };
+		3CD89A8522B8D70700C36A7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CD89A8422B8D70700C36A7A /* GoogleService-Info.plist */; };
 		66B4E2F8E073EC9065A63CF3 /* libPods-RTCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1CFDC9EBC7A437E551E65B /* libPods-RTCUITests.a */; };
 		69E79906D77430B2843BE8E4 /* libPods-RTCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62161393FB2004F5E39F22FC /* libPods-RTCTests.a */; };
 /* End PBXBuildFile section */
@@ -60,7 +60,7 @@
 		3C3559752276F1E100A89D97 /* RTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCUITests.swift; sourceTree = "<group>"; };
 		3C3559772276F1E100A89D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C3559832276F83A00A89D97 /* RTCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCManager.swift; sourceTree = "<group>"; };
-		3CF6350D22B88B4E00B87046 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3CD89A8422B8D70700C36A7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4AF1088B48AFD832332D9F5A /* Pods-RTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTC.debug.xcconfig"; path = "Target Support Files/Pods-RTC/Pods-RTC.debug.xcconfig"; sourceTree = "<group>"; };
 		62161393FB2004F5E39F22FC /* libPods-RTCTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTCTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7479F0D2FA84DAF6BBC0553F /* Pods-RTCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTCUITests.release.xcconfig"; path = "Target Support Files/Pods-RTCUITests/Pods-RTCUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 				3C35595C2276F1E000A89D97 /* Assets.xcassets */,
 				3C35595E2276F1E000A89D97 /* LaunchScreen.storyboard */,
 				3C3559612276F1E000A89D97 /* Info.plist */,
-				3CF6350D22B88B4E00B87046 /* GoogleService-Info.plist */,
+				3CD89A8422B8D70700C36A7A /* GoogleService-Info.plist */,
 				3C3559592276F1E000A89D97 /* RTC.xcdatamodeld */,
 				3C3559832276F83A00A89D97 /* RTCManager.swift */,
 			);
@@ -286,7 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C3559602276F1E000A89D97 /* LaunchScreen.storyboard in Resources */,
-				3CF6350E22B88B4E00B87046 /* GoogleService-Info.plist in Resources */,
+				3CD89A8522B8D70700C36A7A /* GoogleService-Info.plist in Resources */,
 				3C35595D2276F1E000A89D97 /* Assets.xcassets in Resources */,
 				3C3559582276F1E000A89D97 /* Main.storyboard in Resources */,
 			);
