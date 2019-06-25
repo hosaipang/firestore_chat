@@ -12,11 +12,11 @@ import WebRTC
 class RTCManager: NSObject, RTCPeerConnectionDelegate {
     func setup() {
         let configuration = RTCConfiguration()
-        let iceServer = RTCIceServer(urlStrings: [""])
+        let iceServer = RTCIceServer(urlStrings: ["stun:stun1.l.google.com:19302"])
         configuration.iceServers = [iceServer]
         let constraint = RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil)
         let pcFactory = RTCPeerConnectionFactory()
-        let pc = pcFactory.peerConnection(with: configuration, constraints: constraint, delegate: self)
+        let _ = pcFactory.peerConnection(with: configuration, constraints: constraint, delegate: self)
     }
 }
 

@@ -16,9 +16,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rtc = RTCManager();
-        rtc.setup()
-        
         ref = Database.database().reference(withPath: "chat")
         
         guard let ref = ref else {
