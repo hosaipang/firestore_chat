@@ -25,7 +25,7 @@ class ChatManager {
         let db = Firestore.firestore()
         
         var data = [String : Any]()
-        data[Constants.keyUsers] = users
+        data[Constants.keyUsers] = users.map { $0.toDict() }
         
         if let title = title {
             data[Constants.keyTitle] = title
@@ -38,7 +38,7 @@ class ChatManager {
         var roomRef: DocumentReference? = nil
         
         roomRef = db.collection("chatrooms").addDocument(data: data) { error in
-            guard error != nil, let roomId = roomRef?.documentID else {
+            guard error == nil, let roomId = roomRef?.documentID else {
                 completionHandler(nil)
                 return
             }

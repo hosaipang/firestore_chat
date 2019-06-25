@@ -9,19 +9,25 @@
 import Foundation
 
 extension ChatManager {
-    enum Role {
-        case admin
-        case member
+    enum Role: Int {
+        case admin = 0
+        case member = 1
     }
     
     struct User {
-        var role: Role
         var userId: String
+        var role: Role
+        
+        func toDict() -> [String : Any] {
+            return { [ChatManager.Constants.keyUserId : userId, ChatManager.Constants.keyRole : role.rawValue] }()
+        }
     }
     
     struct Constants {
         static let keyChatrooms = "chatrooms"
         static let keyUsers = "users"
+        static let keyRole = "role"
+        static let keyUserId = " user_id"
         static let keyTitle = "title"
         static let keyImageUrl = "image_url"
     }
