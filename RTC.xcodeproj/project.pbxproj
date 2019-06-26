@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0B5FB5D8A8E88DCF10034CF5 /* libPods-RTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720104315EC3A48990A9077 /* libPods-RTC.a */; };
+		3C19B70722C36A080046CDE4 /* Chatroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C19B70622C36A080046CDE4 /* Chatroom.swift */; };
+		3C19B70C22C36AE70046CDE4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C19B70B22C36AE70046CDE4 /* User.swift */; };
 		3C3559532276F1E000A89D97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559522276F1E000A89D97 /* AppDelegate.swift */; };
-		3C3559552276F1E000A89D97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559542276F1E000A89D97 /* ViewController.swift */; };
+		3C3559552276F1E000A89D97 /* ChatroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559542276F1E000A89D97 /* ChatroomViewController.swift */; };
 		3C3559582276F1E000A89D97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C3559562276F1E000A89D97 /* Main.storyboard */; };
-		3C35595B2276F1E000A89D97 /* RTC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559592276F1E000A89D97 /* RTC.xcdatamodeld */; };
 		3C35595D2276F1E000A89D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C35595C2276F1E000A89D97 /* Assets.xcassets */; };
 		3C3559602276F1E000A89D97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C35595E2276F1E000A89D97 /* LaunchScreen.storyboard */; };
 		3C35596B2276F1E100A89D97 /* RTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35596A2276F1E100A89D97 /* RTCTests.swift */; };
@@ -47,11 +48,12 @@
 		174C02C664E395BEAA5DAAFB /* Pods-RTCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTCTests.release.xcconfig"; path = "Target Support Files/Pods-RTCTests/Pods-RTCTests.release.xcconfig"; sourceTree = "<group>"; };
 		1B405BC23727774BEB554937 /* Pods-RTCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTCUITests.debug.xcconfig"; path = "Target Support Files/Pods-RTCUITests/Pods-RTCUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3720104315EC3A48990A9077 /* libPods-RTC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C19B70622C36A080046CDE4 /* Chatroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatroom.swift; sourceTree = "<group>"; };
+		3C19B70B22C36AE70046CDE4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3C35594F2276F1E000A89D97 /* RTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3559522276F1E000A89D97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3C3559542276F1E000A89D97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3C3559542276F1E000A89D97 /* ChatroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomViewController.swift; sourceTree = "<group>"; };
 		3C3559572276F1E000A89D97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3C35595A2276F1E000A89D97 /* RTC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RTC.xcdatamodel; sourceTree = "<group>"; };
 		3C35595C2276F1E000A89D97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C35595F2276F1E000A89D97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C3559612276F1E000A89D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C19B70522C369F50046CDE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C19B70622C36A080046CDE4 /* Chatroom.swift */,
+				3C19B70B22C36AE70046CDE4 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3C3559462276F1E000A89D97 = {
 			isa = PBXGroup;
 			children = (
@@ -127,13 +138,12 @@
 			children = (
 				3C9189C622C0C0B90039877F /* Chat */,
 				3C3559522276F1E000A89D97 /* AppDelegate.swift */,
-				3C3559542276F1E000A89D97 /* ViewController.swift */,
+				3C3559542276F1E000A89D97 /* ChatroomViewController.swift */,
 				3C3559562276F1E000A89D97 /* Main.storyboard */,
 				3C35595C2276F1E000A89D97 /* Assets.xcassets */,
 				3C35595E2276F1E000A89D97 /* LaunchScreen.storyboard */,
 				3C3559612276F1E000A89D97 /* Info.plist */,
 				3CD89A8422B8D70700C36A7A /* GoogleService-Info.plist */,
-				3C3559592276F1E000A89D97 /* RTC.xcdatamodeld */,
 				3C3559832276F83A00A89D97 /* RTCManager.swift */,
 			);
 			path = RTC;
@@ -160,6 +170,7 @@
 		3C9189C622C0C0B90039877F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				3C19B70522C369F50046CDE4 /* Model */,
 				3C9189C722C0D2650039877F /* ChatManager.swift */,
 				3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */,
 			);
@@ -532,11 +543,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C9189C822C0D2650039877F /* ChatManager.swift in Sources */,
-				3C3559552276F1E000A89D97 /* ViewController.swift in Sources */,
-				3C35595B2276F1E000A89D97 /* RTC.xcdatamodeld in Sources */,
+				3C3559552276F1E000A89D97 /* ChatroomViewController.swift in Sources */,
 				3C9189CA22C0DAAE0039877F /* ChatManagerConstants.swift in Sources */,
 				3C3559532276F1E000A89D97 /* AppDelegate.swift in Sources */,
+				3C19B70722C36A080046CDE4 /* Chatroom.swift in Sources */,
 				3C3559842276F83A00A89D97 /* RTCManager.swift in Sources */,
+				3C19B70C22C36AE70046CDE4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,19 +886,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3C3559592276F1E000A89D97 /* RTC.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3C35595A2276F1E000A89D97 /* RTC.xcdatamodel */,
-			);
-			currentVersion = 3C35595A2276F1E000A89D97 /* RTC.xcdatamodel */;
-			path = RTC.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3C3559472276F1E000A89D97 /* Project object */;
 }
