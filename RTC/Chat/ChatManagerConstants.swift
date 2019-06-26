@@ -30,6 +30,10 @@ extension ChatManager {
         static let keyUserId = " user_id"
         static let keyTitle = "title"
         static let keyImageUrl = "image_url"
+        static let keyModifiedDate = "modified_date"
+        static let keyMessages = "messages"
+        static let keyContent = "content"
+        static let keySenderId = "sender_id"
     }
 
 }

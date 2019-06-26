@@ -25,5 +25,32 @@ class ViewController: UIViewController {
             print(roomId ?? "createChatRoom error")
         })
     }
+    
+    @IBAction func createChatRoomAndSendMessage() {
+        let userAdmin = ChatManager.User(userId: "1", role: ChatManager.Role.admin)
+        let userMember = ChatManager.User(userId: "2", role: ChatManager.Role.member)
+        app?.chatManager?.createChatroom(users: [userAdmin, userMember], title: "test room", imageUrl: "image.jpg", completionHandler: { [weak self] (roomId) in
+            print(roomId ?? "createChatRoom error")
+            
+            if let roomId = roomId {
+                self?.app?.chatManager?.createMessage(forRoomId: roomId, content: "test message content", senderId: "1", completionHandler: { (messageId) in
+                    print(messageId ?? "create message error")
+                })
+            }
+        })
+    }
+    
+    @IBAction func queryChatRooms() {
+        app?.chatManager?.queryAllChatrooms(completionHandler: { (rooms) in
+            guard let rooms = rooms else {
+                return
+            }
+            
+            for document in rooms {
+                print("\(document.documentID) => \(document.data())")
+            }
+        })
+    }
+    
 }
 
