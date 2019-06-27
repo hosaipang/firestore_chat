@@ -94,18 +94,19 @@ extension ChatroomViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: chatroomCellIdentifier, for: indexPath)
-        let cell = UITableViewCell(style: .default, reuseIdentifier: chatroomCellIdentifier)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: chatroomCellIdentifier, for: indexPath) as? ChatroomCell else {
+            return UITableViewCell()
+        }
         
         let chatroom = chatrooms[indexPath.row]
-        cell.textLabel?.text = chatroom.id
+        cell.titleLabel.text = chatroom.id
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if let date = chatroom.modifiedDate {
-            cell.detailTextLabel?.text = formatter.string(from: date)
+            cell.timeLabel.text = formatter.string(from: date)
         } else {
-            cell.detailTextLabel?.text = ""
+            cell.timeLabel.text = ""
         }
         
         return cell

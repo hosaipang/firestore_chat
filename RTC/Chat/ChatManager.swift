@@ -13,6 +13,13 @@ class ChatManager {
     
     private let db = Firestore.firestore()
     
+    init() {
+        let settings = FirestoreSettings()
+        settings.isPersistenceEnabled = true
+        
+        db.settings = settings
+    }
+    
     func createSingleChatroom(user: User, completionHandler:@escaping (_ roomId: String?) -> Void) {
         createChatroom(users: [user], title: nil, imageUrl: nil, completionHandler: completionHandler)
     }
