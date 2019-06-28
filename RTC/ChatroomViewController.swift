@@ -17,48 +17,15 @@ class ChatroomViewController: UIViewController {
     
     private var app = UIApplication.shared.delegate as? AppDelegate
     
-    private var chatroomListener: ListenerRegistration?
-    
-    private var chatrooms = [Chatroom]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        addChatroomListener()
-    }
-    
-    private func addChatroomListener() {
-        let db = Firestore.firestore()
-        chatroomListener = db.collection(ChatManager.Constants.keyChatrooms)
-            .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
-            .addSnapshotListener { [weak self] (documentSnapshot, error) in
-                documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
-                    let document = diff.document
-                    let chatroom = Chatroom(document: document)
-                    
-                    switch diff.type {
-                    case .added:
-                        self?.chatrooms.append(chatroom)
-                        self?.chatrooms.sort()
-                        break
-                    case .removed:
-                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else { return }
-                        self?.chatrooms.remove(at: index)
-                        break
-                    case .modified:
-                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else { return }
-                        self?.chatrooms[index] = chatroom
-                        break
-                    default:
-                        break
-                    }
-                })
-                
-                self?.tableView?.reloadData()
-        }
+        app?.chatManager?.delegate = self
     }
     
     @IBAction func createChatRoom() {
-        guard let myUid = app?.chatManager?.uid else { return }
+        guard let myUid = app?.chatManager?.uid else {
+            return
+        }
         
         let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
         let userMember = ChatManager.User(userId: "2", role: ChatManager.Role.member)
@@ -68,7 +35,9 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func createChatRoomAndSendMessage() {
-        guard let myUid = app?.chatManager?.uid else { return }
+        guard let myUid = app?.chatManager?.uid else {
+            return
+        }
         
         let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
         let userMember = ChatManager.User(userId: "2", role: ChatManager.Role.member)
@@ -96,7 +65,9 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func signIn() {
-        guard app?.chatManager?.uid == nil else { return }
+        guard app?.chatManager?.uid == nil else {
+            return
+        }
         
         let alert = UIAlertController(title: "Sign in by Mid", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -114,7 +85,9 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func signOut() {
-        guard app?.chatManager?.uid != nil else { return }
+        guard app?.chatManager?.uid != nil else {
+            return
+        }
         
         do {
             try app?.chatManager?.signOut()
@@ -129,15 +102,16 @@ class ChatroomViewController: UIViewController {
 extension ChatroomViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatrooms.count
+        return app?.chatManager?.chatrooms.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: chatroomCellIdentifier, for: indexPath) as? ChatroomCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: chatroomCellIdentifier, for: indexPath) as? ChatroomCell,
+        let chatManager = app?.chatManager else {
             return UITableViewCell()
         }
         
-        let chatroom = chatrooms[indexPath.row]
+        let chatroom = chatManager.chatrooms[indexPath.row]
         cell.titleLabel.text = chatroom.id
         
         let formatter = DateFormatter()
@@ -151,4 +125,10 @@ extension ChatroomViewController: UITableViewDataSource {
         return cell
     }
 
+}
+
+extension ChatroomViewController: ChatManagerDelegate {
+    func chatroomDidChange() {
+        tableView?.reloadData()
+    }
 }

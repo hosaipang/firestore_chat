@@ -9,9 +9,17 @@
 import Foundation
 import Firebase
 
+protocol ChatManagerDelegate: NSObject {
+    func chatroomDidChange()
+}
+
 class ChatManager {
+    weak var delegate: ChatManagerDelegate?
     
     private let db = Firestore.firestore()
+    private var chatroomListener: ListenerRegistration?
+    
+    private(set) var chatrooms = [Chatroom]()
     private(set) var uid: String?
     
     init() {
@@ -22,6 +30,10 @@ class ChatManager {
         
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             self?.updateUser(uid: user?.uid)
+            
+            if user?.uid != nil {
+                self?.addChatroomListener()
+            }
         }
     }
     
@@ -143,6 +155,46 @@ class ChatManager {
             }
             
             completionHandler(querySnapshot.documents)
+        }
+    }
+    
+    private func addChatroomListener() {
+        guard uid != nil else {
+            return
+        }
+        
+        chatroomListener = db.collection(ChatManager.Constants.keyChatrooms)
+            .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
+            .addSnapshotListener { [weak self] (documentSnapshot, error) in
+                documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
+                    let document = diff.document
+                    let chatroom = Chatroom(document: document)
+                    
+                    switch diff.type {
+                    case .added:
+                        self?.chatrooms.append(chatroom)
+                        self?.chatrooms.sort()
+                        break
+                    case .removed:
+                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else {
+                            return
+                        }
+                        
+                        self?.chatrooms.remove(at: index)
+                        break
+                    case .modified:
+                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else {
+                            return
+                        }
+                        
+                        self?.chatrooms[index] = chatroom
+                        break
+                    default:
+                        break
+                    }
+                })
+                
+                self?.delegate?.chatroomDidChange()
         }
     }
     
