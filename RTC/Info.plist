@@ -36,6 +36,10 @@
 	</array>
 	<key>FirebaseScreenReportingEnabled</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) Requires camera access in order to capture and transmit video</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) Requires microphone access in order to capture and transmit audio</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
