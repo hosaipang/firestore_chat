@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var chatManager: ChatManager?
     
+    private let config = Config.default
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
@@ -33,6 +35,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         chatManager?.updateOnlineStatus(isOnline: true)
+    }
+    
+    func buildMainViewController() -> UIViewController {
+        let signalClient = SignalingClient(serverUrl: self.config.signalingServerUrl)
+        let webRTCClient = WebRTCClient(iceServers: self.config.webRTCIceServers)
+        let mainViewController = MainViewController(signalClient: signalClient,
+                                                    webRTCClient: webRTCClient)
+        let navViewController = UINavigationController(rootViewController: mainViewController)
+        navViewController.navigationBar.isTranslucent = false
+        if #available(iOS 11.0, *) {
+            navViewController.navigationBar.prefersLargeTitles = true
+        }
+        return navViewController
     }
 
 }
