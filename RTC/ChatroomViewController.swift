@@ -58,7 +58,9 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func createChatRoom() {
-        let userAdmin = ChatManager.User(userId: "1", role: ChatManager.Role.admin)
+        guard let myUid = app?.chatManager?.uid else { return }
+        
+        let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
         let userMember = ChatManager.User(userId: "2", role: ChatManager.Role.member)
         app?.chatManager?.createChatroom(users: [userAdmin, userMember], title: "test room", imageUrl: "image.jpg", completionHandler: { (roomId) in
             print(roomId ?? "createChatRoom error")
@@ -66,13 +68,15 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func createChatRoomAndSendMessage() {
-        let userAdmin = ChatManager.User(userId: "1", role: ChatManager.Role.admin)
+        guard let myUid = app?.chatManager?.uid else { return }
+        
+        let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
         let userMember = ChatManager.User(userId: "2", role: ChatManager.Role.member)
         app?.chatManager?.createChatroom(users: [userAdmin, userMember], title: "test room", imageUrl: "image.jpg", completionHandler: { [weak self] (roomId) in
             print(roomId ?? "createChatRoom error")
             
             if let roomId = roomId {
-                self?.app?.chatManager?.createMessage(forRoomId: roomId, content: "test message content", senderId: "1", completionHandler: { (messageId) in
+                self?.app?.chatManager?.createMessage(forRoomId: roomId, content: "test message content", senderId: myUid, completionHandler: { (messageId) in
                     print(messageId ?? "create message error")
                 })
             }
@@ -92,7 +96,7 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func signIn() {
-        guard let isSignedIn = app?.chatManager?.isSignedIn, !isSignedIn else { return }
+        guard app?.chatManager?.uid == nil else { return }
         
         let alert = UIAlertController(title: "Sign in by Mid", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -110,12 +114,12 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func signOut() {
-        guard let isSignedIn = app?.chatManager?.isSignedIn, isSignedIn else { return }
+        guard app?.chatManager?.uid != nil else { return }
         
         do {
             try app?.chatManager?.signOut()
-            chatrooms.removeAll()
-            tableView?.reloadData()
+//            chatrooms.removeAll()
+//            tableView?.reloadData()
         } catch {
             print("sign out error=\(error)")
         }

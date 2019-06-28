@@ -12,7 +12,7 @@ import Firebase
 class ChatManager {
     
     private let db = Firestore.firestore()
-    private(set) var isSignedIn = false
+    private(set) var uid: String?
     
     init() {
         let settings = FirestoreSettings()
@@ -21,7 +21,7 @@ class ChatManager {
         db.settings = settings
         
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            self?.isSignedIn = user != nil
+            self?.uid = user?.uid
             print("auth=\(auth);user=\(String(describing: user))")
         }
     }
@@ -69,7 +69,7 @@ class ChatManager {
             usersDict[user.userId] = user.role.rawValue
         }
         
-        data[Constants.keyUsers] = usersDict
+        data[Constants.keyRoles] = usersDict
         
         if let title = title {
             data[Constants.keyTitle] = title
