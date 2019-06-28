@@ -21,8 +21,7 @@ class ChatManager {
         db.settings = settings
         
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            self?.uid = user?.uid
-            print("auth=\(auth);user=\(String(describing: user))")
+            self?.updateUser(uid: user?.uid)
         }
     }
     
@@ -48,7 +47,30 @@ class ChatManager {
     }
     
     func signOut() throws {
+        updateOnlineStatus(isOnline: false)
         try Auth.auth().signOut()
+    }
+    
+    func updateUser(uid: String?) {
+        self.uid = uid
+        
+        if let uid = uid {
+            updateOnlineStatus(uid: uid, isOnline: true)
+        }
+    }
+    
+    func updateOnlineStatus(uid: String, isOnline: Bool) {
+        let userData = [Constants.keyOnline : isOnline]
+        
+        db.collection(Constants.keyUsers).document(uid).setData(userData) { err in
+            
+        }
+    }
+    
+    func updateOnlineStatus(isOnline: Bool) {
+        guard let myUid = uid else { return }
+        
+        updateOnlineStatus(uid: myUid, isOnline: isOnline)
     }
     
     func createSingleChatroom(user: User, completionHandler:@escaping (_ roomId: String?) -> Void) {

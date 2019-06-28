@@ -35,6 +35,7 @@ extension ChatManager {
         static let keyMessages = "messages"
         static let keyContent = "content"
         static let keySenderId = "sender_id"
+        static let keyOnline = "online"
     }
 
 }
