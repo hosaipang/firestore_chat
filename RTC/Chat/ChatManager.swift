@@ -12,6 +12,7 @@ import Firebase
 class ChatManager {
     
     private let db = Firestore.firestore()
+    private(set) var isSignedIn = false
     
     init() {
         let settings = FirestoreSettings()
@@ -19,13 +20,14 @@ class ChatManager {
         
         db.settings = settings
         
-        Auth.auth().addStateDidChangeListener { (auth, user) in
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            self?.isSignedIn = user != nil
             print("auth=\(auth);user=\(String(describing: user))")
         }
     }
     
     func signIn(mid: String) {
-        let link = "http://192.168.1.146:3000?mid=123"
+        let link = "http://192.168.1.146:3000?mid=\(mid)"
         guard let url = URL(string: link) else { return }
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }

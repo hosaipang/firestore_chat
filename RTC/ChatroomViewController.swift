@@ -92,6 +92,8 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func signIn() {
+        guard let isSignedIn = app?.chatManager?.isSignedIn, !isSignedIn else { return }
+        
         let alert = UIAlertController(title: "Sign in by Mid", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             
@@ -108,6 +110,8 @@ class ChatroomViewController: UIViewController {
     }
     
     @IBAction func signOut() {
+        guard let isSignedIn = app?.chatManager?.isSignedIn, isSignedIn else { return }
+        
         do {
             try app?.chatManager?.signOut()
             chatrooms.removeAll()
