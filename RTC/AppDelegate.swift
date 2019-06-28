@@ -10,6 +10,9 @@ import UIKit
 import CoreData
 import Firebase
 
+// Give credit to Raywenderlich
+// https://www.raywenderlich.com/5359-firebase-tutorial-real-time-chat
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
