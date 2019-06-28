@@ -33,6 +33,9 @@ class ChatManager {
             
             if user?.uid != nil {
                 self?.addChatroomListener()
+            } else {
+                self?.chatrooms.removeAll()
+                self?.delegate?.chatroomDidChange()
             }
         }
     }

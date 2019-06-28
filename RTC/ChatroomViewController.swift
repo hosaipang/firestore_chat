@@ -91,8 +91,6 @@ class ChatroomViewController: UIViewController {
         
         do {
             try app?.chatManager?.signOut()
-//            chatrooms.removeAll()
-//            tableView?.reloadData()
         } catch {
             print("sign out error=\(error)")
         }
