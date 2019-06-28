@@ -18,6 +18,37 @@ class ChatManager {
         settings.isPersistenceEnabled = true
         
         db.settings = settings
+        
+        signIn(mid: "123")
+    }
+    
+    func signIn(mid: String) {
+        let link = "http://192.168.1.146:3000?mid=123"
+        guard let url = URL(string: link) else { return }
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            guard let str = String(data: data, encoding: String.Encoding.utf8) else {
+                return
+            }
+            
+            Auth.auth().signIn(withCustomToken: str) { (user, error) in
+                guard error == nil, let user = user else {
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                
+                print("user=\(user)")
+            }
+        }
+        task.resume()
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("sign out=\(error)")
+        }
     }
     
     func createSingleChatroom(user: User, completionHandler:@escaping (_ roomId: String?) -> Void) {
