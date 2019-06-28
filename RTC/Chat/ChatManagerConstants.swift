@@ -19,7 +19,7 @@ extension ChatManager {
         var role: Role
         
         func toDict() -> [String : Any] {
-            return { [ChatManager.Constants.keyUserId : userId, ChatManager.Constants.keyRole : role.rawValue] }()
+            return { [userId : role.rawValue] }()
         }
     }
     

@@ -19,7 +19,9 @@ class ChatManager {
         
         db.settings = settings
         
-        signIn(mid: "123")
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            print("auth=\(auth);user=\(String(describing: user))")
+        }
     }
     
     func signIn(mid: String) {
@@ -43,12 +45,8 @@ class ChatManager {
         task.resume()
     }
     
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("sign out=\(error)")
-        }
+    func signOut() throws {
+        try Auth.auth().signOut()
     }
     
     func createSingleChatroom(user: User, completionHandler:@escaping (_ roomId: String?) -> Void) {
@@ -63,7 +61,13 @@ class ChatManager {
         }
         
         var data = [String : Any]()
-        data[Constants.keyUsers] = users.map { $0.toDict() }
+        
+        var usersDict = [String : Any]()
+        for user in users {
+            usersDict[user.userId] = user.role.rawValue
+        }
+        
+        data[Constants.keyUsers] = usersDict
         
         if let title = title {
             data[Constants.keyTitle] = title

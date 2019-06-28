@@ -48,7 +48,11 @@ extension Chatroom: Comparable {
     }
     
     static func < (lhs: Chatroom, rhs: Chatroom) -> Bool {
-        return lhs.id < rhs.id
+        guard let lhsDate = lhs.modifiedDate, let rhsDate = rhs.modifiedDate else {
+            return lhs.id < rhs.id
+        }
+        
+        return lhsDate > rhsDate
     }
     
 }

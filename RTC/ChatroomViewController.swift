@@ -33,14 +33,20 @@ class ChatroomViewController: UIViewController {
             .addSnapshotListener { [weak self] (documentSnapshot, error) in
                 documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
                     let document = diff.document
+                    let chatroom = Chatroom(document: document)
                     
                     switch diff.type {
                     case .added:
-                        let chatroom = Chatroom(document: document)
                         self?.chatrooms.append(chatroom)
+                        self?.chatrooms.sort()
                         break
                     case .removed:
-                        
+                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else { return }
+                        self?.chatrooms.remove(at: index)
+                        break
+                    case .modified:
+                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else { return }
+                        self?.chatrooms[index] = chatroom
                         break
                     default:
                         break
@@ -85,6 +91,31 @@ class ChatroomViewController: UIViewController {
         })
     }
     
+    @IBAction func signIn() {
+        let alert = UIAlertController(title: "Sign in by Mid", message: nil, preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert, weak self] (_) in
+            guard let textField = alert?.textFields?.first, let mid = textField.text, mid.count > 0 else { return }
+            self?.app?.chatManager?.signIn(mid: mid)
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func signOut() {
+        do {
+            try app?.chatManager?.signOut()
+            chatrooms.removeAll()
+            tableView?.reloadData()
+        } catch {
+            print("sign out error=\(error)")
+        }
+    }
 }
 
 extension ChatroomViewController: UITableViewDataSource {
