@@ -42,12 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let webRTCClient = WebRTCClient(iceServers: self.config.webRTCIceServers)
         let mainViewController = MainViewController(signalClient: signalClient,
                                                     webRTCClient: webRTCClient)
-        let navViewController = UINavigationController(rootViewController: mainViewController)
-        navViewController.navigationBar.isTranslucent = false
-        if #available(iOS 11.0, *) {
-            navViewController.navigationBar.prefersLargeTitles = true
-        }
-        return navViewController
+        return mainViewController
     }
 
 }

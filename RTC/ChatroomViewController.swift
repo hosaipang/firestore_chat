@@ -95,6 +95,12 @@ class ChatroomViewController: UIViewController {
             print("sign out error=\(error)")
         }
     }
+    
+    @IBAction func call() {
+        guard let call = app?.buildMainViewController() else { return }
+        
+        navigationController?.pushViewController(call, animated: true)
+    }
 }
 
 extension ChatroomViewController: UITableViewDataSource {
