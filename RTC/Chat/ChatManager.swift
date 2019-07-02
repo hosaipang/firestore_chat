@@ -115,12 +115,7 @@ class ChatManager {
         
         var data = [String : Any]()
         
-        var usersDict = [String : Any]()
-        for user in users {
-            usersDict[user.userId] = user.role.rawValue
-        }
-        
-        data[Constants.keyRoles] = usersDict
+        data[Constants.keyUsersId] = users.map{ $0.userId }
         
         if let title = title {
             data[Constants.keyTitle] = title
@@ -176,13 +171,20 @@ class ChatManager {
     }
     
     private func addChatroomListener() {
-        guard uid != nil else {
+        guard let uid = uid else {
             return
         }
         
         chatroomListener = db.collection(ChatManager.Constants.keyChatrooms)
+            .whereField(Constants.keyUsersId, arrayContains: uid)
             .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
             .addSnapshotListener { [weak self] (documentSnapshot, error) in
+                guard error == nil else {
+                    self?.chatrooms.removeAll()
+                    self?.chatroomDelegate?.chatroomDidChange()
+                    return
+                }
+                
                 documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
                     let document = diff.document
                     let chatroom = Chatroom(document: document)

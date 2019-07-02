@@ -28,6 +28,7 @@ extension ChatManager {
         static let keyUsers = "users"
         static let keyRole = "role"
         static let keyRoles = "roles"
+        static let keyUsersId = "users_id"
         static let keyUserId = "user_id"
         static let keyTitle = "title"
         static let keyImageUrl = "image_url"
