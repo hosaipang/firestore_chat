@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct User {
-    var userId: String
-    var role: ChatManager.Role
+protocol User {
+    var userId: String { get set }
 }

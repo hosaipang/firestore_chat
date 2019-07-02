@@ -19,19 +19,17 @@ class ChatroomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        app?.chatManager?.delegate = self
+        app?.chatManager?.chatroomDelegate = self
     }
     
     @IBAction func createChatRoom() {
-        guard let myUid = app?.chatManager?.uid else {
+        guard let _ = app?.chatManager?.uid else {
             return
         }
         
-        let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
-        let userMember = ChatManager.User(userId: "2", role: ChatManager.Role.member)
-        app?.chatManager?.createChatroom(users: [userAdmin, userMember], title: "test room", imageUrl: "image.jpg", completionHandler: { (roomId) in
-            print(roomId ?? "createChatRoom error")
-        })
+        let ctrl = UsersTableViewController()
+        ctrl.delegate = self
+        navigationController?.pushViewController(ctrl, animated: true)
     }
     
     @IBAction func createChatRoomAndSendMessage() {
@@ -131,8 +129,22 @@ extension ChatroomViewController: UITableViewDataSource {
 
 }
 
-extension ChatroomViewController: ChatManagerDelegate {
+extension ChatroomViewController: ChatManagerChatroomDelegate {
     func chatroomDidChange() {
         tableView?.reloadData()
+    }
+}
+
+extension ChatroomViewController: UsersTableViewControllerDelegate {
+    func didSingleTap(user: MemberUser) {
+        guard let myUid = app?.chatManager?.uid else {
+            return
+        }
+        
+        let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
+        let userMember = ChatManager.User(userId: user.userId, role: ChatManager.Role.admin)
+        app?.chatManager?.createChatroom(users: [userAdmin, userMember], title: "test room", imageUrl: "image.jpg", completionHandler: { (roomId) in
+            print(roomId ?? "createChatRoom error")
+        })
     }
 }

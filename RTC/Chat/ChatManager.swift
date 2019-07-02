@@ -9,18 +9,25 @@
 import Foundation
 import Firebase
 
-protocol ChatManagerDelegate: NSObject {
+protocol ChatManagerChatroomDelegate: NSObject {
     func chatroomDidChange()
 }
 
+protocol ChatManagerUserDelegate: NSObject {
+    func memberUserDidChange()
+}
+
 class ChatManager {
-    weak var delegate: ChatManagerDelegate?
+    weak var chatroomDelegate: ChatManagerChatroomDelegate?
+    weak var userDelegate: ChatManagerUserDelegate?
     
     private let db = Firestore.firestore()
     private var chatroomListener: ListenerRegistration?
+    private var usersListener: ListenerRegistration?
     
-    private(set) var chatrooms = [Chatroom]()
     private(set) var uid: String?
+    private(set) var chatrooms = [Chatroom]()
+    private(set) var memberUsers = [MemberUser]()
     
     init() {
         let settings = FirestoreSettings()
@@ -29,19 +36,26 @@ class ChatManager {
         db.settings = settings
         
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            self?.updateUser(uid: user?.uid)
+            guard let `self` = self else {
+                return
+            }
+            
+            self.updateUser(uid: user?.uid)
             
             if user?.uid != nil {
-                self?.addChatroomListener()
+                self.addChatroomListener()
+                self.addUsersListener()
             } else {
-                self?.chatrooms.removeAll()
-                self?.delegate?.chatroomDidChange()
+                self.chatrooms.removeAll()
+                self.chatroomDelegate?.chatroomDidChange()
+                self.memberUsers.removeAll()
+                self.userDelegate?.memberUserDidChange()
             }
         }
     }
     
     func signIn(mid: String) {
-        let link = "http://192.168.1.146:3000?mid=\(mid)"
+        let link = "http://192.168.1.145:3000?mid=\(mid)"
         guard let url = URL(string: link) else { return }
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
@@ -197,8 +211,46 @@ class ChatManager {
                     }
                 })
                 
-                self?.delegate?.chatroomDidChange()
+                self?.chatroomDelegate?.chatroomDidChange()
         }
+    }
+    
+    private func addUsersListener() {
+        guard let _ = uid else {
+            return
+        }
+        
+        usersListener = db.collection(ChatManager.Constants.keyUsers)
+            .addSnapshotListener({ [weak self] (documentSnapshot, error) in
+                documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
+                    let document = diff.document
+                    let member = MemberUser(document: document)
+                    
+                    switch diff.type {
+                    case .added:
+                        self?.memberUsers.append(member)
+                        break
+                    case .removed:
+                        guard let index = self?.memberUsers.firstIndex(of: member) else {
+                            return
+                        }
+                        
+                        self?.memberUsers.remove(at: index)
+                        break
+                    case .modified:
+                        guard let index = self?.memberUsers.firstIndex(of: member) else {
+                            return
+                        }
+                        
+                        self?.memberUsers[index] = member
+                        break
+                    default:
+                        break
+                    }
+                })
+                
+                self?.userDelegate?.memberUserDidChange()
+            })
     }
     
 }

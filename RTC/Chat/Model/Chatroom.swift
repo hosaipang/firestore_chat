@@ -29,7 +29,7 @@ struct Chatroom {
                         continue
                 }
                 
-                self.users.append(User(userId: roomUserId, role: ChatManager.Role(rawValue: roomUserRole) ?? ChatManager.Role.member))
+                self.users.append(ChatroomUser(userId: roomUserId, role: ChatManager.Role(rawValue: roomUserRole) ?? ChatManager.Role.member))
             }
         }
         
