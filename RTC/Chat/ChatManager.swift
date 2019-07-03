@@ -179,41 +179,50 @@ class ChatManager {
             .whereField(Constants.keyUsersId, arrayContains: uid)
             .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
             .addSnapshotListener { [weak self] (documentSnapshot, error) in
+                guard let `self` = self else {
+                    return
+                }
+                
                 guard error == nil else {
-                    self?.chatrooms.removeAll()
-                    self?.chatroomDelegate?.chatroomDidChange()
+                    self.chatrooms.removeAll()
+                    self.chatroomDelegate?.chatroomDidChange()
                     return
                 }
                 
                 documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
                     let document = diff.document
                     let chatroom = Chatroom(document: document)
                     
                     switch diff.type {
                     case .added:
-                        self?.chatrooms.append(chatroom)
-                        self?.chatrooms.sort()
+                        self.chatrooms.append(chatroom)
+                        self.chatrooms.sort()
                         break
                     case .removed:
-                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else {
+                        guard let index = self.chatrooms.firstIndex(of: chatroom) else {
                             return
                         }
                         
-                        self?.chatrooms.remove(at: index)
+                        self.chatrooms.remove(at: index)
                         break
                     case .modified:
-                        guard let index = self?.chatrooms.firstIndex(of: chatroom) else {
+                        guard let index = self.chatrooms.firstIndex(of: chatroom) else {
                             return
                         }
                         
-                        self?.chatrooms[index] = chatroom
+                        self.chatrooms[index] = chatroom
+                        self.chatrooms.sort()
                         break
                     default:
                         break
                     }
                 })
                 
-                self?.chatroomDelegate?.chatroomDidChange()
+                self.chatroomDelegate?.chatroomDidChange()
         }
     }
     

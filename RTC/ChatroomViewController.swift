@@ -129,6 +129,16 @@ extension ChatroomViewController: UITableViewDataSource {
 
 }
 
+extension ChatroomViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let chatroom = app?.chatManager?.chatrooms[indexPath.row] {
+            let ctrl = MessageViewController()
+            ctrl.chatroomId = chatroom.id
+            navigationController?.pushViewController(ctrl, animated: true)
+        }
+    }
+}
+
 extension ChatroomViewController: ChatManagerChatroomDelegate {
     func chatroomDidChange() {
         tableView?.reloadData()
