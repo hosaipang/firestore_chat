@@ -16,8 +16,9 @@ class MessageViewController: UIViewController {
     @IBOutlet var textField: UITextField?
     
     private var app = UIApplication.shared.delegate as? AppDelegate
-    private var messageListener: ListenerRegistration?
-    private var previousMessageListener: ListenerRegistration?
+    
+    private var messageListeners = [ListenerRegistration]()
+    
     private let db = Firestore.firestore()
     private(set) var messages = [Message]()
     
@@ -28,6 +29,12 @@ class MessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         previousPage()
+    }
+    
+    deinit {
+        for listener in messageListeners {
+            listener.remove()
+        }
     }
     
     @IBAction func previousPage() {
@@ -41,7 +48,7 @@ class MessageViewController: UIViewController {
                 last = cursorFromLast
             }
             
-            previousMessageListener = db.collection(ChatManager.Constants.keyChatrooms)
+            let queryListener = db.collection(ChatManager.Constants.keyChatrooms)
                 .document(chatroomId)
                 .collection(ChatManager.Constants.keyMessages)
                 .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
@@ -96,8 +103,9 @@ class MessageViewController: UIViewController {
                     self.tableView?.reloadData()
                 })
             
+            messageListeners.append(queryListener)
         } else {
-            previousMessageListener = db.collection(ChatManager.Constants.keyChatrooms)
+            let queryListener = db.collection(ChatManager.Constants.keyChatrooms)
                 .document(chatroomId)
                 .collection(ChatManager.Constants.keyMessages)
                 .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
@@ -145,6 +153,8 @@ class MessageViewController: UIViewController {
                     
                     self.tableView?.reloadData()
                 })
+            
+            messageListeners.append(queryListener)
         }
     }
     
