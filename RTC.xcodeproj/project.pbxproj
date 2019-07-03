@@ -17,6 +17,7 @@
 		3C3559602276F1E000A89D97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C35595E2276F1E000A89D97 /* LaunchScreen.storyboard */; };
 		3C35596B2276F1E100A89D97 /* RTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35596A2276F1E100A89D97 /* RTCTests.swift */; };
 		3C3559762276F1E100A89D97 /* RTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559752276F1E100A89D97 /* RTCUITests.swift */; };
+		3C46F31622CC649C00BE739E /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C46F31522CC649C00BE739E /* MessageViewController.xib */; };
 		3C9189C822C0D2650039877F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9189C722C0D2650039877F /* ChatManager.swift */; };
 		3C9189CA22C0DAAE0039877F /* ChatManagerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */; };
 		3CA75F0022CAF5C400941CCE /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA75EFF22CAF5C400941CCE /* UsersTableViewController.swift */; };
@@ -78,6 +79,7 @@
 		3C3559712276F1E100A89D97 /* RTCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3559752276F1E100A89D97 /* RTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCUITests.swift; sourceTree = "<group>"; };
 		3C3559772276F1E100A89D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C46F31522CC649C00BE739E /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		3C9189C722C0D2650039877F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManagerConstants.swift; sourceTree = "<group>"; };
 		3CA75EFF22CAF5C400941CCE /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				3C9189C722C0D2650039877F /* ChatManager.swift */,
 				3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */,
 				3CA75F0622CB684100941CCE /* MessageViewController.swift */,
+				3C46F31522CC649C00BE739E /* MessageViewController.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				3C3559602276F1E000A89D97 /* LaunchScreen.storyboard in Resources */,
 				3CB293EF22C620D80067F3E7 /* MainViewController.xib in Resources */,
 				3CD89A8522B8D70700C36A7A /* GoogleService-Info.plist in Resources */,
+				3C46F31622CC649C00BE739E /* MessageViewController.xib in Resources */,
 				3C35595D2276F1E000A89D97 /* Assets.xcassets in Resources */,
 				3CB293ED22C620D80067F3E7 /* VideoViewController.xib in Resources */,
 				3C3559582276F1E000A89D97 /* Main.storyboard in Resources */,

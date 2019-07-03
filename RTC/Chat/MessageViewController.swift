@@ -9,24 +9,32 @@
 import Foundation
 import Firebase
 
-class MessageViewController: UITableViewController {
+class MessageViewController: UIViewController {
     var chatroomId: String?
     
+    @IBOutlet var tableView: UITableView?
+    @IBOutlet var textField: UITextField?
+    
+    private var app = UIApplication.shared.delegate as? AppDelegate
     private var messageListener: ListenerRegistration?
     private let db = Firestore.firestore()
     private(set) var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("chatroomId=\(String(describing: chatroomId))")
+        refreshMessage()
+    }
+    
+    private func refreshMessage() {
         guard let chatroomId = chatroomId else {
             return
         }
         
         messageListener = db.collection(ChatManager.Constants.keyChatrooms)
-        .document(chatroomId)
-        .collection(ChatManager.Constants.keyMessages)
-        .order(by: ChatManager.Constants.keyModifiedDate, descending: false)
+            .document(chatroomId)
+            .collection(ChatManager.Constants.keyMessages)
+            .order(by: ChatManager.Constants.keyModifiedDate, descending: false)
             .addSnapshotListener({ [weak self] (documentSnapshot, error) in
                 guard let `self` = self else {
                     return
@@ -34,7 +42,7 @@ class MessageViewController: UITableViewController {
                 
                 guard error == nil else {
                     self.messages.removeAll()
-                    self.tableView.reloadData()
+                    self.tableView?.reloadData()
                     return
                 }
                 
@@ -69,19 +77,35 @@ class MessageViewController: UITableViewController {
                     }
                 })
                 
-                self.tableView.reloadData()
+                self.tableView?.reloadData()
             })
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    @IBAction func send() {
+        guard let textField = textField, let text = textField.text, let roomId = chatroomId, let chatManager = app?.chatManager, let userId = chatManager.uid else {
+            return
+        }
+        
+        textField.resignFirstResponder()
+        
+        chatManager.createMessage(forRoomId: roomId, content: text, senderId: userId) { (messageId) in
+            print("messageId=\(String(describing: messageId))")
+        }
+    }
+}
+
+extension MessageViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+}
+
+extension MessageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         
         let message = messages[indexPath.row]
