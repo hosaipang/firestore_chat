@@ -21,76 +21,131 @@ class MessageViewController: UIViewController {
     private let db = Firestore.firestore()
     private(set) var messages = [Message]()
     
-    private var currentSnapshot: QuerySnapshot?
-    
-    private var currentLimit = 1
+    private var lastCursor: QuerySnapshot?
+    private var firstCursor: QuerySnapshot?
+    private let pageSize = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("chatroomId=\(String(describing: chatroomId))")
-        refreshMessage()
+        previousPage()
     }
     
-    private func refreshMessage() {
+    @IBAction func previousPage() {
         guard let chatroomId = chatroomId else {
             return
         }
         
-        messageListener = db.collection(ChatManager.Constants.keyChatrooms)
-            .document(chatroomId)
-            .collection(ChatManager.Constants.keyMessages)
-            .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
-            .limit(to: currentLimit)
-            .addSnapshotListener({ [weak self] (documentSnapshot, error) in
-                guard let `self` = self else {
-                    return
-                }
-                
-                guard error == nil else {
-                    self.messages.removeAll()
-                    self.tableView?.reloadData()
-                    return
-                }
-                
-                if self.currentSnapshot == nil {
-                    self.currentSnapshot = documentSnapshot
-                }
-                
-                documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
+        if var last = firstCursor?.documents.last {
+            
+            if let cursorFromLast = lastCursor?.documents.last {
+                last = cursorFromLast
+            }
+            
+            previousMessageListener = db.collection(ChatManager.Constants.keyChatrooms)
+                .document(chatroomId)
+                .collection(ChatManager.Constants.keyMessages)
+                .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
+                .limit(to: pageSize)
+                .start(afterDocument: last)
+                .addSnapshotListener({ [weak self] (documentSnapshot, error) in
                     guard let `self` = self else {
                         return
                     }
                     
-                    let document = diff.document
-                    let message = Message(document: document)
-                    
-                    switch diff.type {
-                    case .added:
-                        self.messages.append(message)
-                        self.messages.sort()
-//                        self.currentLimit += 1
-                        break
-                    case .removed:
-                        guard let index = self.messages.firstIndex(of: message) else {
-                            return
-                        }
-                        
-//                        self.messages.remove(at: index)
-                        break
-                    case .modified:
-                        guard let index = self.messages.firstIndex(of: message) else {
-                            return
-                        }
-                        
-                        self.messages[index] = message
-                        break
-                    default:
-                        break
+                    guard error == nil else {
+                        self.messages.removeAll()
+                        self.tableView?.reloadData()
+                        return
                     }
+                    
+                    self.lastCursor = documentSnapshot
+                    
+                    documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
+                        guard let `self` = self else {
+                            return
+                        }
+                        
+                        let document = diff.document
+                        let message = Message(document: document)
+                        
+                        switch diff.type {
+                        case .added:
+                            self.messages.append(message)
+                            self.messages.sort()
+                            
+                            break
+                        case .removed:
+                            guard let index = self.messages.firstIndex(of: message) else {
+                                return
+                            }
+                            
+                            self.messages.remove(at: index)
+                            break
+                        case .modified:
+                            guard let index = self.messages.firstIndex(of: message) else {
+                                return
+                            }
+                            
+                            self.messages[index] = message
+                            break
+                        default:
+                            break
+                        }
+                    })
+                    
+                    self.tableView?.reloadData()
                 })
-                
-                self.tableView?.reloadData()
-            })
+            
+        } else {
+            previousMessageListener = db.collection(ChatManager.Constants.keyChatrooms)
+                .document(chatroomId)
+                .collection(ChatManager.Constants.keyMessages)
+                .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
+                .limit(to: pageSize)
+                .addSnapshotListener({ [weak self] (documentSnapshot, error) in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    guard error == nil else {
+                        self.messages.removeAll()
+                        self.tableView?.reloadData()
+                        return
+                    }
+                    
+                    self.firstCursor = documentSnapshot
+                    
+                    documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
+                        guard let `self` = self else {
+                            return
+                        }
+                        
+                        let document = diff.document
+                        let message = Message(document: document)
+                        
+                        switch diff.type {
+                        case .added:
+                            self.messages.append(message)
+                            self.messages.sort()
+                            
+                            break
+                        case .removed:
+                            break
+                        case .modified:
+                            guard let index = self.messages.firstIndex(of: message) else {
+                                return
+                            }
+                            
+                            self.messages[index] = message
+                            break
+                        default:
+                            break
+                        }
+                    })
+                    
+                    self.tableView?.reloadData()
+                })
+        }
     }
     
     @IBAction func send() {
@@ -103,68 +158,6 @@ class MessageViewController: UIViewController {
         chatManager.createMessage(forRoomId: roomId, content: text, senderId: userId) { (messageId) in
             print("messageId=\(String(describing: messageId))")
         }
-    }
-    
-    @IBAction func previousPage() {
-        guard let currentSnapshot = currentSnapshot, let last = currentSnapshot.documents.last, let chatroomId = chatroomId else {
-            return
-        }
-        
-        previousMessageListener = db.collection(ChatManager.Constants.keyChatrooms)
-            .document(chatroomId)
-            .collection(ChatManager.Constants.keyMessages)
-            .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
-            .limit(to: 2)
-            .start(afterDocument: last)
-            .addSnapshotListener({ [weak self] (documentSnapshot, error) in
-                guard let `self` = self else {
-                    return
-                }
-                
-                guard error == nil else {
-                    self.messages.removeAll()
-                    self.tableView?.reloadData()
-                    return
-                }
-                
-                self.currentSnapshot = documentSnapshot
-                
-                documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
-                    guard let `self` = self else {
-                        return
-                    }
-                    
-                    let document = diff.document
-                    let message = Message(document: document)
-                    
-                    switch diff.type {
-                    case .added:
-                        self.messages.append(message)
-                        self.messages.sort()
-                        
-                        break
-                    case .removed:
-                        guard let index = self.messages.firstIndex(of: message) else {
-                            return
-                        }
-                        
-                        //                        self.messages.remove(at: index)
-                        break
-                    case .modified:
-                        guard let index = self.messages.firstIndex(of: message) else {
-                            return
-                        }
-                        
-                        self.messages[index] = message
-                        break
-                    default:
-                        break
-                    }
-                })
-                
-                self.tableView?.reloadData()
-            })
-        
     }
 }
 
