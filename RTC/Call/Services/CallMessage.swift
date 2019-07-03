@@ -1,5 +1,5 @@
 //
-//  Message.swift
+//  CallMessage.swift
 //  WebRTC-Demo
 //
 //  Created by Stasel on 20/02/2019.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum Message {
+enum CallMessage {
     case sdp(SessionDescription)
     case candidate(IceCandidate)
 }
 
-extension Message: Codable {
+extension CallMessage: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)

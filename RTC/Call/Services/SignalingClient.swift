@@ -33,7 +33,7 @@ final class SignalingClient {
     }
     
     func send(sdp rtcSdp: RTCSessionDescription) {
-        let message = Message.sdp(SessionDescription(from: rtcSdp))
+        let message = CallMessage.sdp(SessionDescription(from: rtcSdp))
         do {
             let dataMessage = try self.encoder.encode(message)
             self.socket.write(data: dataMessage)
@@ -44,7 +44,7 @@ final class SignalingClient {
     }
     
     func send(candidate rtcIceCandidate: RTCIceCandidate) {
-        let message = Message.candidate(IceCandidate(from: rtcIceCandidate))
+        let message = CallMessage.candidate(IceCandidate(from: rtcIceCandidate))
         do {
             let dataMessage = try self.encoder.encode(message)
             self.socket.write(data: dataMessage)
@@ -72,9 +72,9 @@ extension SignalingClient: WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        let message: Message
+        let message: CallMessage
         do {
-            message = try self.decoder.decode(Message.self, from: data)
+            message = try self.decoder.decode(CallMessage.self, from: data)
         }
         catch {
             debugPrint("Warning: Could not decode incoming message: \(error)")
