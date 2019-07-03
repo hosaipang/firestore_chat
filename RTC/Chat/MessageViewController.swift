@@ -121,7 +121,12 @@ class MessageViewController: UIViewController {
                         return
                     }
                     
-                    self.firstCursor = documentSnapshot
+                    if self.firstCursor == nil {
+                        self.firstCursor = documentSnapshot
+                        self.listenerForMiddleRecord()
+                    } else {
+                        self.firstCursor = documentSnapshot
+                    }
                     
                     documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
                         guard let `self` = self else {
@@ -156,6 +161,58 @@ class MessageViewController: UIViewController {
             
             messageListeners.append(queryListener)
         }
+    }
+    
+    private func listenerForMiddleRecord() {
+        guard let firstCursor = firstCursor, let last = firstCursor.documents.last, let chatroomId = chatroomId else {
+            return
+        }
+        
+        let queryForMiddle = db.collection(ChatManager.Constants.keyChatrooms)
+            .document(chatroomId)
+            .collection(ChatManager.Constants.keyMessages)
+            .order(by: ChatManager.Constants.keyModifiedDate, descending: true)
+            .end(atDocument: last)
+            .addSnapshotListener({ [weak self] (documentSnapshot, error) in
+                guard let `self` = self else {
+                    return
+                }
+                
+                guard error == nil else {
+                    self.messages.removeAll()
+                    self.tableView?.reloadData()
+                    return
+                }
+                
+                documentSnapshot?.documentChanges.forEach({ [weak self] (diff) in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    let document = diff.document
+                    let message = Message(document: document)
+                    
+                    switch diff.type {
+                    case .added:
+                        break
+                    case .removed:
+                        break
+                    case .modified:
+                        guard let index = self.messages.firstIndex(of: message) else {
+                            return
+                        }
+                        
+                        self.messages[index] = message
+                        break
+                    default:
+                        break
+                    }
+                })
+                
+                self.tableView?.reloadData()
+            })
+        
+        messageListeners.append(queryForMiddle)
     }
     
     @IBAction func send() {
