@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol User {
-    var userId: String { get set }
+struct User {
+    var userId: String
 }

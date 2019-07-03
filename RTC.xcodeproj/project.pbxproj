@@ -176,7 +176,6 @@
 				3CB293D522C620610067F3E7 /* Call */,
 				3C9189C622C0C0B90039877F /* Chat */,
 				3C3559522276F1E000A89D97 /* AppDelegate.swift */,
-				3C3559542276F1E000A89D97 /* ChatroomViewController.swift */,
 				3C3559562276F1E000A89D97 /* Main.storyboard */,
 				3C35595C2276F1E000A89D97 /* Assets.xcassets */,
 				3C35595E2276F1E000A89D97 /* LaunchScreen.storyboard */,
@@ -212,6 +211,7 @@
 				3C19B70522C369F50046CDE4 /* Model */,
 				3C9189C722C0D2650039877F /* ChatManager.swift */,
 				3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */,
+				3C3559542276F1E000A89D97 /* ChatroomViewController.swift */,
 				3CA75F0622CB684100941CCE /* MessageViewController.swift */,
 				3C46F31522CC649C00BE739E /* MessageViewController.xib */,
 			);

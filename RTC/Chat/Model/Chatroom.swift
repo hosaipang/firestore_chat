@@ -22,14 +22,9 @@ struct Chatroom {
         self.id = document.documentID
         
         self.users = [User]()
-        if let roomUsers = data[ChatManager.Constants.keyUsers] as? [[String : Any]] {
-            for roomUser in roomUsers {
-                guard let roomUserId = roomUser[ChatManager.Constants.keyUserId] as? String,
-                    let roomUserRole = roomUser[ChatManager.Constants.keyRole] as? Int else {
-                        continue
-                }
-                
-                self.users.append(ChatroomUser(userId: roomUserId, role: ChatManager.Role(rawValue: roomUserRole) ?? ChatManager.Role.member))
+        if let roomUsersId = data[ChatManager.Constants.keyUsersId] as? [String] {
+            for roomUserId in roomUsersId {
+                self.users.append(User(userId: roomUserId))
             }
         }
         

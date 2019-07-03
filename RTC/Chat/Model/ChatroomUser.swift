@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ChatroomUser: User {
+struct ChatroomUser {
     var userId: String
     var role: ChatManager.Role
 }

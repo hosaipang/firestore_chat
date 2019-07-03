@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct MemberUser: User {
+struct MemberUser {
     var userId: String
     var online: Bool
     

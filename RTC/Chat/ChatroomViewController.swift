@@ -133,7 +133,7 @@ extension ChatroomViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let chatroom = app?.chatManager?.chatrooms[indexPath.row] {
             let ctrl = MessageViewController(nibName: "MessageViewController", bundle: nil)
-            ctrl.chatroomId = "\(chatroom.id)"
+            ctrl.chatroom = chatroom
             navigationController?.pushViewController(ctrl, animated: true)
         }
     }

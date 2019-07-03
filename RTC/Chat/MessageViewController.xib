@@ -54,8 +54,19 @@
                         <action selector="previousPage" destination="-1" eventType="touchUpInside" id="suc-pY-ajK"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXP-bV-XKK">
+                    <rect key="frame" x="374" y="54" width="30" height="30"/>
+                    <state key="normal" title="call"/>
+                    <connections>
+                        <action selector="call" destination="-1" eventType="touchUpInside" id="6sy-4z-4de"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="oXP-bV-XKK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="D75-KE-OYP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oXP-bV-XKK" secondAttribute="trailing" constant="10" id="sBd-dd-mRE"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>

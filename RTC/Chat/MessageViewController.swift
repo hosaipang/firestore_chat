@@ -10,10 +10,19 @@ import Foundation
 import Firebase
 
 class MessageViewController: UIViewController {
-    var chatroomId: String?
-    
     @IBOutlet var tableView: UITableView?
     @IBOutlet var textField: UITextField?
+    
+    private var chatroomId: String?
+    var chatroom: Chatroom? {
+        didSet {
+            if let chatroom = chatroom {
+                chatroomId = chatroom.id
+            } else {
+                chatroomId = nil
+            }
+        }
+    }
     
     private var app = UIApplication.shared.delegate as? AppDelegate
     
@@ -142,8 +151,6 @@ class MessageViewController: UIViewController {
                             self.messages.sort()
                             
                             break
-                        case .removed:
-                            break
                         case .modified:
                             guard let index = self.messages.firstIndex(of: message) else {
                                 return
@@ -193,10 +200,6 @@ class MessageViewController: UIViewController {
                     let message = Message(document: document)
                     
                     switch diff.type {
-                    case .added:
-                        break
-                    case .removed:
-                        break
                     case .modified:
                         guard let index = self.messages.firstIndex(of: message) else {
                             return
@@ -224,6 +227,21 @@ class MessageViewController: UIViewController {
         
         chatManager.createMessage(forRoomId: roomId, content: text, senderId: userId) { (messageId) in
             print("messageId=\(String(describing: messageId))")
+        }
+    }
+    
+    @IBAction func call() {
+        guard let myUid = app?.chatManager?.uid else {
+            return
+        }
+        
+        guard let users = chatroom?.users, users.count == 2 else {
+            return
+        }
+        
+        let otherUsers = users.filter{ $0.userId != myUid }
+        if let otherUser = otherUsers.first {
+            let userId = otherUser.userId
         }
     }
 }
