@@ -18,6 +18,7 @@
 		3C35596B2276F1E100A89D97 /* RTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35596A2276F1E100A89D97 /* RTCTests.swift */; };
 		3C3559762276F1E100A89D97 /* RTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559752276F1E100A89D97 /* RTCUITests.swift */; };
 		3C46F31622CC649C00BE739E /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C46F31522CC649C00BE739E /* MessageViewController.xib */; };
+		3C78F71222CCAF5A00D74876 /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C78F71122CCAF5A00D74876 /* CallManager.swift */; };
 		3C9189C822C0D2650039877F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9189C722C0D2650039877F /* ChatManager.swift */; };
 		3C9189CA22C0DAAE0039877F /* ChatManagerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */; };
 		3CA75F0022CAF5C400941CCE /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA75EFF22CAF5C400941CCE /* UsersTableViewController.swift */; };
@@ -80,6 +81,7 @@
 		3C3559752276F1E100A89D97 /* RTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCUITests.swift; sourceTree = "<group>"; };
 		3C3559772276F1E100A89D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C46F31522CC649C00BE739E /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
+		3C78F71122CCAF5A00D74876 /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		3C9189C722C0D2650039877F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManagerConstants.swift; sourceTree = "<group>"; };
 		3CA75EFF22CAF5C400941CCE /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				3CA75EFE22CAF59500941CCE /* User */,
 				3CB293D522C620610067F3E7 /* Call */,
 				3C9189C622C0C0B90039877F /* Chat */,
+				3CB293D622C6209B0067F3E7 /* Config.swift */,
 				3C3559522276F1E000A89D97 /* AppDelegate.swift */,
 				3C3559562276F1E000A89D97 /* Main.storyboard */,
 				3C35595C2276F1E000A89D97 /* Assets.xcassets */,
@@ -241,7 +244,7 @@
 				3CB293DC22C620D80067F3E7 /* Extensions */,
 				3CB293E022C620D80067F3E7 /* Screens */,
 				3CB293D822C620D80067F3E7 /* Services */,
-				3CB293D622C6209B0067F3E7 /* Config.swift */,
+				3C78F71122CCAF5A00D74876 /* CallManager.swift */,
 			);
 			path = Call;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				3CB293F022C620D80067F3E7 /* MainViewController.swift in Sources */,
 				3C3559532276F1E000A89D97 /* AppDelegate.swift in Sources */,
 				3C19B70722C36A080046CDE4 /* Chatroom.swift in Sources */,
+				3C78F71222CCAF5A00D74876 /* CallManager.swift in Sources */,
 				3CB293E922C620D80067F3E7 /* SignalingClient.swift in Sources */,
 				3CB293EE22C620D80067F3E7 /* VideoViewController.swift in Sources */,
 				3CA75F0722CB684100941CCE /* MessageViewController.swift in Sources */,

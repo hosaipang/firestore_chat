@@ -55,7 +55,7 @@ class ChatManager {
     }
     
     func signIn(mid: String) {
-        let link = "http://192.168.1.145:3000?mid=\(mid)"
+        let link = "\(defaultFirestoreServerUrl)?mid=\(mid)"
         guard let url = URL(string: link) else { return }
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
