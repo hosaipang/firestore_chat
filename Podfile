@@ -7,6 +7,7 @@ target 'RTC' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
   pod 'GoogleWebRTC'
   pod 'Starscream'
 end

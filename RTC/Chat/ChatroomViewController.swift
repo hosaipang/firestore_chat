@@ -133,21 +133,7 @@ extension ChatroomViewController: ChatManagerChatroomDelegate {
 
 extension ChatroomViewController: UsersTableViewControllerDelegate {
     func didSingleTap(users: [String]) {
-        guard let myUid = app?.chatManager?.uid else {
-            return
-        }
-        
-        var members = [ChatManager.User]()
-        
-        let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
-        members.append(userAdmin)
-        
-        for userId in users {
-            let userMember = ChatManager.User(userId: userId, role: ChatManager.Role.member)
-            members.append(userMember)
-        }
-        
-        app?.chatManager?.createChatroom(users: members, title: "test room", imageUrl: "image.jpg", completionHandler: { (roomId) in
+        app?.chatManager?.createChatroom(users: users, title: nil, imageUrl: nil, completionHandler: { (roomId) in
             print(roomId ?? "createChatRoom error")
         })
     }

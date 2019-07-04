@@ -78,8 +78,14 @@ class UsersTableViewController: UITableViewController {
             return
         }
         
-        delegate?.didSingleTap(users: Array(selectedUsersId))
-        navigationController?.popViewController(animated: true)
+        if selectedUsersId.count == 1 {
+            delegate?.didSingleTap(users: Array(selectedUsersId))
+            navigationController?.popViewController(animated: true)
+        } else {
+            let createGroup = CreateGroupViewController(nibName: "CreateGroupViewController", bundle: nil)
+            createGroup.usersId = Array(selectedUsersId)
+            navigationController?.pushViewController(createGroup, animated: true)
+        }
     }
 }
 

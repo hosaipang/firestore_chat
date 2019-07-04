@@ -18,6 +18,8 @@
 		3C35596B2276F1E100A89D97 /* RTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C35596A2276F1E100A89D97 /* RTCTests.swift */; };
 		3C3559762276F1E100A89D97 /* RTCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3559752276F1E100A89D97 /* RTCUITests.swift */; };
 		3C46F31622CC649C00BE739E /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C46F31522CC649C00BE739E /* MessageViewController.xib */; };
+		3C62D03F22CDE9940068FF08 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62D03E22CDE9940068FF08 /* CreateGroupViewController.swift */; };
+		3C62D04122CDEF390068FF08 /* CreateGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C62D04022CDEF390068FF08 /* CreateGroupViewController.xib */; };
 		3C78F71222CCAF5A00D74876 /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C78F71122CCAF5A00D74876 /* CallManager.swift */; };
 		3C9189C822C0D2650039877F /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9189C722C0D2650039877F /* ChatManager.swift */; };
 		3C9189CA22C0DAAE0039877F /* ChatManagerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */; };
@@ -81,6 +83,8 @@
 		3C3559752276F1E100A89D97 /* RTCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCUITests.swift; sourceTree = "<group>"; };
 		3C3559772276F1E100A89D97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C46F31522CC649C00BE739E /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
+		3C62D03E22CDE9940068FF08 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		3C62D04022CDEF390068FF08 /* CreateGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupViewController.xib; sourceTree = "<group>"; };
 		3C78F71122CCAF5A00D74876 /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		3C9189C722C0D2650039877F /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		3C9189C922C0DAAE0039877F /* ChatManagerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManagerConstants.swift; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 				3C3559542276F1E000A89D97 /* ChatroomViewController.swift */,
 				3CA75F0622CB684100941CCE /* MessageViewController.swift */,
 				3C46F31522CC649C00BE739E /* MessageViewController.xib */,
+				3C62D03E22CDE9940068FF08 /* CreateGroupViewController.swift */,
+				3C62D04022CDEF390068FF08 /* CreateGroupViewController.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				3C46F31622CC649C00BE739E /* MessageViewController.xib in Resources */,
 				3C35595D2276F1E000A89D97 /* Assets.xcassets in Resources */,
 				3CB293ED22C620D80067F3E7 /* VideoViewController.xib in Resources */,
+				3C62D04122CDEF390068FF08 /* CreateGroupViewController.xib in Resources */,
 				3C3559582276F1E000A89D97 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +672,7 @@
 				3C19B70C22C36AE70046CDE4 /* User.swift in Sources */,
 				3CA75F0022CAF5C400941CCE /* UsersTableViewController.swift in Sources */,
 				3CB293EC22C620D80067F3E7 /* IceCandidate.swift in Sources */,
+				3C62D03F22CDE9940068FF08 /* CreateGroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,6 +37,7 @@ extension ChatManager {
         static let keyContent = "content"
         static let keySenderId = "sender_id"
         static let keyOnline = "online"
+        static let keyRoomThumbnails = "room_thumbnails"
     }
 
 }

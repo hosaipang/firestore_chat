@@ -20,12 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var chatManager: ChatManager?
     
+    var callManager: CallManager?
+    
     private let config = Config.default
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         chatManager = ChatManager()
+        
+        let signalClient = SignalingClient(serverUrl: self.config.signalingServerUrl)
+        let webRTCClient = WebRTCClient(iceServers: self.config.webRTCIceServers)
+        callManager = CallManager(signalClient: signalClient, webRTCClient: webRTCClient)
+        
         return true
     }
     

@@ -22,6 +22,7 @@ class ChatManager {
     weak var userDelegate: ChatManagerUserDelegate?
     
     private let db = Firestore.firestore()
+    private let storage = Storage.storage().reference()
     private var chatroomListener: ListenerRegistration?
     private var usersListener: ListenerRegistration?
     
@@ -106,7 +107,25 @@ class ChatManager {
         createChatroom(users: [user], title: nil, imageUrl: nil, completionHandler: completionHandler)
     }
     
-    func createChatroom(users: [User], title: String?, imageUrl: String?, completionHandler:@escaping (_ roomId: String?) -> Void) {
+    func createChatroom(users: [String], title: String?, imageUrl: String?, completionHandler:@escaping (_ roomId: String?) -> Void) {
+        guard let myUid = uid else {
+            return
+        }
+        
+        var members = [ChatManager.User]()
+        
+        let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
+        members.append(userAdmin)
+        
+        for userId in users {
+            let userMember = ChatManager.User(userId: userId, role: ChatManager.Role.member)
+            members.append(userMember)
+        }
+        
+        createChatroom(users: members, title: title, imageUrl: imageUrl, completionHandler: completionHandler)
+    }
+    
+    private func createChatroom(users: [User], title: String?, imageUrl: String?, completionHandler:@escaping (_ roomId: String?) -> Void) {
         // Protection from single user
         guard users.count >= 2 else {
             completionHandler(nil)
@@ -174,6 +193,27 @@ class ChatManager {
             }
             
             completionHandler(querySnapshot.documents)
+        }
+    }
+    
+    func uploadGroupThumbnail(image: UIImage, completionHandler: @escaping (_ url: String?) -> Void) {
+        guard let data = image.jpegData(compressionQuality: 1) else {
+            completionHandler(nil)
+            return
+        }
+        
+        let imageName = "\(UUID().uuidString)_\(String(Date().timeIntervalSince1970)).jpg"
+        let imageRef = storage.child(ChatManager.Constants.keyRoomThumbnails).child(imageName)
+        
+        imageRef.putData(data, metadata: nil) { (metadata, error) in
+            imageRef.downloadURL(completion: { (url, error) in
+                guard let downloadUrl = url, error == nil else {
+                    completionHandler(nil)
+                    return
+                }
+                
+                completionHandler(downloadUrl.absoluteString)
+            })
         }
     }
     
