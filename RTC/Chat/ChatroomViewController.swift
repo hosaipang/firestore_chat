@@ -32,24 +32,6 @@ class ChatroomViewController: UIViewController {
         navigationController?.pushViewController(ctrl, animated: true)
     }
     
-    @IBAction func createChatRoomAndSendMessage() {
-        guard let myUid = app?.chatManager?.uid else {
-            return
-        }
-        
-        let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
-        let userMember = ChatManager.User(userId: "2", role: ChatManager.Role.member)
-        app?.chatManager?.createChatroom(users: [userAdmin, userMember], title: "test room", imageUrl: "image.jpg", completionHandler: { [weak self] (roomId) in
-            print(roomId ?? "createChatRoom error")
-            
-            if let roomId = roomId {
-                self?.app?.chatManager?.createMessage(forRoomId: roomId, content: "test message content", senderId: myUid, completionHandler: { (messageId) in
-                    print(messageId ?? "create message error")
-                })
-            }
-        })
-    }
-    
     @IBAction func queryChatRooms() {
         app?.chatManager?.queryAllChatrooms(completionHandler: { (rooms) in
             guard let rooms = rooms else {
@@ -98,6 +80,10 @@ class ChatroomViewController: UIViewController {
         guard let call = app?.buildMainViewController() else { return }
         
         navigationController?.pushViewController(call, animated: true)
+    }
+    
+    @IBAction func allMessages() {
+        app?.chatManager?.queryAllMessages()
     }
 }
 

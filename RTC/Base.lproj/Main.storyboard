@@ -41,13 +41,6 @@
                                     <action selector="createChatRoom" destination="BYZ-38-t0r" eventType="touchUpInside" id="gvf-2w-diz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBA-8K-2vE">
-                                <rect key="frame" x="31" y="209" width="131" height="30"/>
-                                <state key="normal" title="room and message"/>
-                                <connections>
-                                    <action selector="createChatRoomAndSendMessage" destination="BYZ-38-t0r" eventType="touchUpInside" id="S82-gF-VGe"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6j-Cv-Ekx">
                                 <rect key="frame" x="31" y="171" width="43" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -124,13 +117,20 @@
                                     <action selector="signOut" destination="BYZ-38-t0r" eventType="touchUpInside" id="KEX-rc-sdz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8L-If-XR6">
+                                <rect key="frame" x="306" y="102" width="91" height="30"/>
+                                <state key="normal" title="All messages"/>
+                                <connections>
+                                    <action selector="allMessages" destination="BYZ-38-t0r" eventType="touchUpInside" id="FhT-2H-cRH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ZBA-8K-2vE" firstAttribute="top" secondItem="Xc4-Ur-yec" secondAttribute="bottom" constant="19" id="cbn-bG-SUy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="f8L-If-XR6" secondAttribute="trailing" constant="17" id="dvI-A3-eBW"/>
                             <constraint firstItem="Xc4-Ur-yec" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="gum-qW-hIM"/>
                             <constraint firstItem="Xc4-Ur-yec" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="29" id="q97-1g-1gT"/>
-                            <constraint firstItem="Xc4-Ur-yec" firstAttribute="leading" secondItem="ZBA-8K-2vE" secondAttribute="leading" id="ufe-sL-qLB"/>
+                            <constraint firstItem="f8L-If-XR6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="14" id="vIt-dV-MSb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

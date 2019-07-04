@@ -139,15 +139,16 @@ class ChatManager {
         }
     }
     
-    func createMessage(forRoomId roomId: String, content: String, senderId: String, completionHandler:@escaping (_ messageId: String?) -> Void) {
+    func createMessage(forRoom room: Chatroom, content: String, senderId: String, completionHandler:@escaping (_ messageId: String?) -> Void) {
         var data = [String : Any]()
         data[Constants.keyContent] = content
         data[Constants.keySenderId] = senderId
         
         data[Constants.keyModifiedDate] = Date()
+        data[Constants.keyUsersId] = room.users.map{ $0.userId }
         
         var messageRef: DocumentReference? = nil
-        messageRef = db.collection(Constants.keyChatrooms).document(roomId).collection(Constants.keyMessages).addDocument(data: data, completion: { (error) in
+        messageRef = db.collection(Constants.keyChatrooms).document(room.id).collection(Constants.keyMessages).addDocument(data: data, completion: { (error) in
             guard error == nil, let messageId = messageRef?.documentID else {
                 completionHandler(nil)
                 return
@@ -167,6 +168,26 @@ class ChatManager {
             }
             
             completionHandler(querySnapshot.documents)
+        }
+    }
+    
+    // TODO The actual implementation is not ready
+    func queryAllMessages() {
+        guard let uid = uid else {
+            return
+        }
+        
+        db.collectionGroup(Constants.keyMessages)
+            .whereField(Constants.keyUsersId, arrayContains: uid)
+            .getDocuments { (snapshot, error) in
+                guard let snapshot = snapshot else {
+                    return
+                }
+                for document in snapshot.documents {
+                    let message = Message(document: document)
+                    let roomDoc = document.reference.parent.parent
+                    print("message=\(message); at room ID=\(String(describing: roomDoc?.documentID))")
+                }
         }
     }
     

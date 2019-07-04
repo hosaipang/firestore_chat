@@ -219,13 +219,13 @@ class MessageViewController: UIViewController {
     }
     
     @IBAction func send() {
-        guard let textField = textField, let text = textField.text, let roomId = chatroomId, let chatManager = app?.chatManager, let userId = chatManager.uid else {
+        guard let textField = textField, let text = textField.text, let chatroom = chatroom, let chatManager = app?.chatManager, let userId = chatManager.uid else {
             return
         }
         
         textField.resignFirstResponder()
         
-        chatManager.createMessage(forRoomId: roomId, content: text, senderId: userId) { (messageId) in
+        chatManager.createMessage(forRoom: chatroom, content: text, senderId: userId) { (messageId) in
             print("messageId=\(String(describing: messageId))")
         }
     }
