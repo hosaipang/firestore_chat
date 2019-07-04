@@ -117,6 +117,12 @@ class ChatManager {
         
         data[Constants.keyUsersId] = users.map{ $0.userId }
         
+        var roles = [String : Any]()
+        for user in users {
+            roles[user.userId] = user.role.rawValue
+        }
+        data[Constants.keyRoles] = roles
+        
         if let title = title {
             data[Constants.keyTitle] = title
         }

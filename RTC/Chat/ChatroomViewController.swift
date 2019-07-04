@@ -132,14 +132,22 @@ extension ChatroomViewController: ChatManagerChatroomDelegate {
 }
 
 extension ChatroomViewController: UsersTableViewControllerDelegate {
-    func didSingleTap(user: MemberUser) {
+    func didSingleTap(users: [String]) {
         guard let myUid = app?.chatManager?.uid else {
             return
         }
         
+        var members = [ChatManager.User]()
+        
         let userAdmin = ChatManager.User(userId: myUid, role: ChatManager.Role.admin)
-        let userMember = ChatManager.User(userId: user.userId, role: ChatManager.Role.admin)
-        app?.chatManager?.createChatroom(users: [userAdmin, userMember], title: "test room", imageUrl: "image.jpg", completionHandler: { (roomId) in
+        members.append(userAdmin)
+        
+        for userId in users {
+            let userMember = ChatManager.User(userId: userId, role: ChatManager.Role.member)
+            members.append(userMember)
+        }
+        
+        app?.chatManager?.createChatroom(users: members, title: "test room", imageUrl: "image.jpg", completionHandler: { (roomId) in
             print(roomId ?? "createChatRoom error")
         })
     }

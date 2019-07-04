@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UsersTableViewControllerDelegate: NSObject {
-    func didSingleTap(user: MemberUser)
+    func didSingleTap(users: [String])
 }
 
 class UsersTableViewController: UITableViewController {
@@ -19,9 +19,13 @@ class UsersTableViewController: UITableViewController {
     private let cellIdentifier = "UserCell"
     
     private var usersList = [MemberUser]()
+    private var selectedUsersId = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add chatroom", style: .plain, target: self, action: #selector(addChatroom))
+        
         let delegate = UIApplication.shared.delegate as? AppDelegate
         guard let chatManager = delegate?.chatManager else {
             return
@@ -47,15 +51,35 @@ class UsersTableViewController: UITableViewController {
         cell.textLabel?.text = user.userId
         cell.detailTextLabel?.text = user.online ? "Online" : "Offline"
         
+        if selectedUsersId.contains(user.userId) {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !isMultiSelection {
-            let user = usersList[indexPath.row]
-            delegate?.didSingleTap(user: user)
-            navigationController?.popViewController(animated: true)
+        let user = usersList[indexPath.row]
+        let userId = user.userId
+        
+        if selectedUsersId.contains(userId) {
+            selectedUsersId.remove(userId)
+        } else {
+            selectedUsersId.insert(userId)
         }
+        
+        tableView.reloadData()
+    }
+    
+    @objc func addChatroom(sender: UIBarButtonItem) {
+        guard selectedUsersId.count >= 1 else {
+            return
+        }
+        
+        delegate?.didSingleTap(users: Array(selectedUsersId))
+        navigationController?.popViewController(animated: true)
     }
 }
 
